@@ -5,10 +5,14 @@ import { UserModule } from './user/user.module';
 import { PlaceModule } from './place/place.module';
 import { CommentModule } from './comment/comment.module';
 import { TourModule } from './tour/tour.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { MailModule } from './mail/mail.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [UserModule, PlaceModule, CommentModule, TourModule],
+  imports: [UserModule, PlaceModule, CommentModule, TourModule, MongooseModule.forRoot("mongodb://localhost:27017/tourism-app"), MailModule,
+    ConfigModule.forRoot({ isGlobal: true })],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
