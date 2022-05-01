@@ -1,14 +1,17 @@
-import { Controller, Post, Body, Res } from '@nestjs/common';
+import { Controller, Post, Body, Res, Get, Param } from '@nestjs/common';
 import { ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
+import { ForgotCodeDto } from './dtos/forgot-code.dto';
+import { RecoryPasswordDto } from './dtos/recovery-password.dto';
 import { SingupUserDto } from './dtos/singup-user.dto';
 import { ValidateDto } from './dtos/validate-email.dto';
+import { TokenService } from './token.service';
 import { UserService } from './user.service';
 
 @ApiTags('user')
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService) { };
+    constructor(private readonly userService: UserService, private readonly tokenService:TokenService) { };
 
     @ApiConsumes("application/x-www-form-urlencoded")
     @Post('singup')
@@ -26,7 +29,24 @@ export class UserController {
     @ApiConsumes("application/x-www-form-urlencoded")
     @Post('login')
     async login(@Body() singupUserDto: SingupUserDto, @Res() res: Response) {
-        const user= await this.userService.login(singupUserDto.email, singupUserDto.password);
+        const user = await this.userService.login(singupUserDto.email, singupUserDto.password);
         res.status(200).json(user);
     }
+
+
+    @ApiConsumes("application/x-www-form-urlencoded")
+    @Post('forgot-code')
+    async sendCode(@Body() dto: ForgotCodeDto, @Res() res: Response) {
+        const response = await this.userService.sendRecoveryCode(dto.email);
+        res.status(200).json(response);
+    }
+
+    @ApiConsumes("application/x-www-form-urlencoded")
+    @Post('forgot-password')
+    async forgotPassword(@Body() dto: RecoryPasswordDto, @Res() res: Response) {
+        const response = await this.userService.recoveryPassword(dto.email, dto.code, dto.password);
+        res.status(200).json(response);
+    }
+
+
 }

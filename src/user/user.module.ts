@@ -4,10 +4,12 @@ import { MailModule } from 'src/mail/mail.module';
 import { User, UserSchema } from './schemas/user.schema';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
+import { TokenService } from './token.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{name:User.name,schema:UserSchema}]),MailModule],
+  imports: [MongooseModule.forFeature([{name:User.name,schema:UserSchema}]),MailModule,],
   controllers: [UserController],
-  providers: [UserService]
+  providers: [UserService, TokenService],
+  exports:[TokenService]
 })
 export class UserModule { }

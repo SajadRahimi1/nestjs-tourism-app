@@ -11,7 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [UserModule, PlaceModule, CommentModule, TourModule, MongooseModule.forRoot("mongodb://localhost:27017/tourism-app"), MailModule,
-    ConfigModule.forRoot({ isGlobal: true })],
+    ConfigModule.forRoot({ isGlobal: true }),],
   controllers: [AppController],
   providers: [AppService],
 })
