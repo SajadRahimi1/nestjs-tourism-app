@@ -7,7 +7,7 @@ import { UserService } from './user.service';
 import { TokenService } from './token.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{name:User.name,schema:UserSchema}]),MailModule,],
+  imports: [MongooseModule.forFeature([{name:'User',schema:UserSchema}]),MailModule,],
   controllers: [UserController],
   providers: [UserService, TokenService],
   exports:[TokenService]

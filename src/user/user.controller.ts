@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 @ApiTags('user')
 @Controller('user')
 export class UserController {
-    constructor(private readonly userService: UserService, private readonly tokenService:TokenService) { };
+    constructor(private readonly userService: UserService,) { };
 
     @ApiConsumes("application/x-www-form-urlencoded")
     @Post('singup')

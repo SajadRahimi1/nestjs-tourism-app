@@ -12,7 +12,7 @@ const scrypt = promisify(_scrypt);
 @Injectable()
 export class UserService {
     constructor(private readonly mailerService: MailService,
-        @InjectModel(User.name) private readonly userModel: Model<UserDocument>) { };
+        @InjectModel('User') private readonly userModel: Model<UserDocument>) { };
 
 
     async singup(email: string, password: string) {
