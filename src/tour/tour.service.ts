@@ -21,6 +21,11 @@ export class TourService {
         return await this.tourModel.find({ title: { $regex: search, $options: 'i' } });
     }
 
+    async filterTourByCity(city: string) {
+        // return search in city
+        return await this.tourModel.find({ city: { $regex: city, $options: 'i' } });
+    }
+
     async generateFakeData() {
         for (let i = 0; i < 20; i++) {
             const tour = new this.tourModel({
