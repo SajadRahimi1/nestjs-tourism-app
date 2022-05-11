@@ -2,7 +2,7 @@ import { Controller, Get, Query, Param, Res, UseInterceptors,Headers } from '@ne
 import { TourService } from './tour.service';
 import { Response } from 'express';
 import { ApiTags, ApiConsumes, ApiQuery, ApiBearerAuth } from '@nestjs/swagger';
-import { TokenHeaderInceptor } from 'src/middleware/token.middleware';
+import { TokenHeaderInceptor } from '../guards/token.guard';
 
 @ApiTags('tour')
 @Controller('tour')

@@ -10,7 +10,7 @@ import { MailModule } from './mail/mail.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [UserModule, PlaceModule, CommentModule, TourModule, MongooseModule.forRoot("mongodb://localhost:27017/tourism-app"), MailModule,
+  imports: [UserModule, PlaceModule, CommentModule, TourModule, MongooseModule.forRoot("mongodb://root:example@mongo:27017/tourism-app"), MailModule,
     ConfigModule.forRoot({ isGlobal: true }),],
   controllers: [AppController],
   providers: [AppService],
