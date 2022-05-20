@@ -9,7 +9,6 @@ constructor(private httpService: HttpService,private tokenService:TokenService){
     async intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
     const ctx = context.switchToHttp();
     const token = ctx.getRequest().headers.authorization;
-    console.log(token);
     if(token){
         ctx.getRequest().headers.user = await this.tokenService.getUser(token.split(' ')[1]);        
         this.httpService.axiosRef.defaults.headers.common['s'] = token+token;

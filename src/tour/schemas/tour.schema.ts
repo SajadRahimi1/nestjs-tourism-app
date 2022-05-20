@@ -1,5 +1,6 @@
 import  {Prop,Schema,SchemaFactory} from '@nestjs/mongoose';
 import {Document} from 'mongoose';
+import {cities} from '../../constants/city.contant';
 
 export type TourDocument = Tour & Document;
 
@@ -17,7 +18,7 @@ export class Tour{
     @Prop([{required: true, type: String,}])
     images:string[];
 
-    @Prop({required: true, type: String,})
+    @Prop({required: true, type: String})
     city:string;
 }
 

@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { TourDocument } from './schemas/tour.schema';
 import {faker} from '@faker-js/faker';
+import { cities } from 'src/constants/city.contant';
 
 @Injectable()
 export class TourService {
@@ -33,7 +34,7 @@ export class TourService {
                 description: faker.lorem.paragraph(),
                 price: faker.commerce.price(),
                 images: [faker.image.imageUrl()],
-                city: faker.address.city(),
+                city: faker.random.arrayElement(cities),
             });
             await tour.save();
         }

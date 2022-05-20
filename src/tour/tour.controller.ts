@@ -3,6 +3,8 @@ import { TourService } from './tour.service';
 import { Response } from 'express';
 import { ApiTags, ApiConsumes, ApiQuery, ApiBearerAuth } from '@nestjs/swagger';
 import { TokenHeaderInceptor } from '../guards/token.guard';
+import { cities } from 'src/constants/city.contant';
+import {SearchDto} from './dto/search.dto';
 
 @ApiTags('tour')
 @Controller('tour')
@@ -27,10 +29,10 @@ export class TourController {
 
     @ApiConsumes("application/x-www-form-urlencoded")
     @ApiBearerAuth("Authorization")
-    @ApiQuery({ name: 'city', required: true, type: String })
+    @ApiQuery({ name: 'city', required: true, type: String,enum:cities })
     @Get('city')
-    async filterByCity(@Query('city') city,@Headers() header) {
+    async filterByCity(@Query('city') city:SearchDto,@Headers() header) {
         console.log(header.user);
-        return await this.tourService.filterTourByCity(city);
+        return await this.tourService.filterTourByCity(city.city);
     }
 }

@@ -1,7 +1,8 @@
+# specify the node base image with your desired version node:<version>
 FROM nestjs
-WORKDIR /tourism-app
-COPY package.json /tourism-app
-RUN npm install
-COPY . /tourism-app
-CMD [ "npm","run","start:dev" ]
+WORKDIR /app
+# COPY package.json /app
+# RUN npm install -v
+COPY . /app
+# CMD nest start --watch
 EXPOSE 3000
