@@ -11,12 +11,11 @@ export class TourReview{
     @Prop({required:true, type:mongoose.Schema.Types.ObjectId,ref:'Tour',})
     tourId:Tour;
     
-    @Prop({required:true,type:Date})
+    @Prop({required:false,type:Date,default:Date.now})
     date:Date;
 
     @Prop({required:true,type:String})
     comment:string;
-
 
     @Prop({required:true,type:Number,min:1,max:5})
     star:number;

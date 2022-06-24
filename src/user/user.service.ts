@@ -14,6 +14,16 @@ export class UserService {
     constructor(private readonly mailerService: MailService,
         @InjectModel('User') private readonly userModel: Model<UserDocument>) { };
 
+        async getUserInformation(id: string) {
+        const user = await this.userModel.findById(id).select('-password');
+        if (!user) {
+            throw new NotFoundException('کاربری یافت نشد');
+        }
+        return user;
+
+        
+        
+    }
 
     async singup(email: string, password: string) {
 

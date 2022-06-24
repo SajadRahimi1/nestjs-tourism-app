@@ -10,7 +10,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('cats').addBearerAuth(
       {
-        name:'Authorization',
+        name: 'Authorization',
         type: 'http',
         scheme: 'bearer',
         bearerFormat: 'UUID',

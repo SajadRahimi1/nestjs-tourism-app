@@ -1,10 +1,11 @@
-import { Controller, Get, Query, Param, Res, UseInterceptors,Headers } from '@nestjs/common';
+import { Controller, Get,Post, Query, Param, Res, UseInterceptors,Headers, Body } from '@nestjs/common';
 import { TourService } from './tour.service';
 import { Response } from 'express';
 import { ApiTags, ApiConsumes, ApiQuery, ApiBearerAuth } from '@nestjs/swagger';
 import { TokenHeaderInceptor } from '../guards/token.guard';
 import { cities } from 'src/constants/city.contant';
 import {SearchDto} from './dto/search.dto';
+import { CommentDto } from './dto/comment.dto';
 
 @ApiTags('tour')
 @Controller('tour')
@@ -34,5 +35,13 @@ export class TourController {
     async filterByCity(@Query('city') city:SearchDto,@Headers() header) {
         console.log(header.user);
         return await this.tourService.filterTourByCity(city.city);
+    }
+
+    @ApiConsumes("application/x-www-form-urlencoded")
+    @ApiBearerAuth("Authorization")
+    @Post('comment')
+    async comment(@Body() body:CommentDto,@Headers() header) {
+        // console.log(header.user.id);
+        return await this.tourService.createComment(body.tourId,header.user.id,body.star,body.comment);
     }
 }
