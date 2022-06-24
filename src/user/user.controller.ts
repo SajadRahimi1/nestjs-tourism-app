@@ -6,7 +6,6 @@ import { ForgotCodeDto } from './dtos/forgot-code.dto';
 import { RecoryPasswordDto } from './dtos/recovery-password.dto';
 import { SingupUserDto } from './dtos/singup-user.dto';
 import { ValidateDto } from './dtos/validate-email.dto';
-import { TokenService } from './token.service';
 import { UserService } from './user.service';
 
 @ApiTags('user')
