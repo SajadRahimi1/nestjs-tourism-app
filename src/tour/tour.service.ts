@@ -14,9 +14,7 @@ export class TourService {
     ) { };
 
     async randomTour(size:number) {
-        return await this.tourModel.aggregate([
-            { $sample: { size: size } }
-        ]);
+        return await this.tourModel.find();
     }
 
     async searchTour(search: string) {
