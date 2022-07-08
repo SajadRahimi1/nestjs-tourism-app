@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Header } from '@nestjs/common';
-import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {  ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { PlaceDto } from './dto/place.dto';
 import { PlaceService } from './place.service';
 
@@ -12,6 +12,15 @@ export class PlaceController {
     @Get('')
     async getAll() {
         return await this.placeService.getAll();
+    }
+
+    @ApiConsumes("application/x-www-form-urlencoded")
+    // @ApiBearerAuth("Authorization")
+    // @ApiQuery({ name: 'city', required: true, type: String, enum: cities })
+    @Get(':city')
+    async filterByCity(@Param('city') city: string) {
+        console.log(city);
+        return await this.placeService.filterTourByCity(city);
     }
 
     @ApiConsumes("application/x-www-form-urlencoded")

@@ -10,6 +10,7 @@ import { MailModule } from './mail/mail.module';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { resolve } from 'path';
+import { TicketModule } from './ticket/ticket.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { resolve } from 'path';
       exclude: ['/api*'],
     }),
     UserModule, PlaceModule, CommentModule, TourModule, MongooseModule.forRoot("mongodb://localhost:27017/tourism-app"), MailModule,
-    ConfigModule.forRoot({ isGlobal: true }),],
+    ConfigModule.forRoot({ isGlobal: true }),
+    TicketModule,],
   controllers: [AppController],
   providers: [AppService],
 })

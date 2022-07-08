@@ -16,4 +16,9 @@ export class PlaceService {
         const place = new this.placeModel(data);
         return await place.save()
     }
+
+    async filterTourByCity(city: string) {
+        // return search in city
+        return await this.placeModel.find({ city: { $regex: city, $options: 'i' } });
+    }
 }

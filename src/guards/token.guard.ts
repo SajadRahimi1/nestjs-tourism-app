@@ -11,7 +11,7 @@ constructor(private httpService: HttpService,private tokenService:TokenService){
     const token = ctx.getRequest().headers.authorization;
     if(token){
         ctx.getRequest().headers.user = await this.tokenService.getUser(token.split(' ')[1]);        
-        this.httpService.axiosRef.defaults.headers.common['s'] = token+token;
+        
     }
     return next.handle().pipe();
 }
