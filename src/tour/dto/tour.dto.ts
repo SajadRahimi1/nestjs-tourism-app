@@ -4,7 +4,7 @@ import { cities } from 'src/constants/city.contant';
 
 export class TourDto {
     @ApiProperty()
-    @IsEnum(cities, { message: "استان مورد نظر شما موجود نمی باشد" })
+    @IsString({})
     city: string;
 
     @ApiProperty()

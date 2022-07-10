@@ -49,7 +49,7 @@ export class TourController {
     @ApiConsumes("application/x-www-form-urlencoded")
     @ApiBearerAuth("Authorization")
     @Post('')
-    async create(@Body() body: TourDto, @Headers() header) {
+    async create(@Body() body: TourDto) {
         // console.log(header.user.id);
         return await this.tourService.createData(body);
     }
