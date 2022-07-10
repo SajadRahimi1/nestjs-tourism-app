@@ -15,6 +15,9 @@ export class Tour{
     @Prop({required: true, type: String,})
     price:string;
 
+    @Prop({required: false, type: String,})
+    url:string;
+
     @Prop([{required: true, type: String,}])
     images:string[];
 
