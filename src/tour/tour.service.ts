@@ -5,6 +5,7 @@ import { TourDocument } from './schemas/tour.schema';
 import { faker } from '@faker-js/faker';
 import { cities } from 'src/constants/city.contant';
 import { TourReview } from './schemas/tour-review.schema';
+import { TourDto } from './dto/tour.dto';
 
 @Injectable()
 export class TourService {
@@ -39,6 +40,21 @@ export class TourService {
             });
             await tour.save();
         }
+        return { success: true, message: 'تور ها با موفقیت ساخته شدند' };
+    }
+
+    async createData(dto:TourDto) {
+
+        const tour = new this.tourModel({
+            title: dto.title,
+            description: dto.description,
+            price: dto.price,
+            images: dto.images,
+            city: dto.city,
+            url: dto.url
+        });
+        await tour.save();
+
         return { success: true, message: 'تور ها با موفقیت ساخته شدند' };
     }
 

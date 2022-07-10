@@ -6,6 +6,7 @@ import { TokenHeaderInceptor } from '../guards/token.guard';
 import { cities } from 'src/constants/city.contant';
 import { SearchDto } from './dto/search.dto';
 import { CommentDto } from './dto/comment.dto';
+import { TourDto } from './dto/tour.dto';
 
 @ApiTags('tour')
 @Controller('tour')
@@ -43,5 +44,13 @@ export class TourController {
     async comment(@Body() body: CommentDto, @Headers() header) {
         // console.log(header.user.id);
         return await this.tourService.createComment(body.tourId, header.user.id, body.star, body.comment);
+    }
+
+    @ApiConsumes("application/x-www-form-urlencoded")
+    @ApiBearerAuth("Authorization")
+    @Post('')
+    async create(@Body() body: TourDto, @Headers() header) {
+        // console.log(header.user.id);
+        return await this.tourService.createData(body);
     }
 }
